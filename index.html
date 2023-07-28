@@ -20,26 +20,114 @@
          
          <form action="">
          <label for="fname">First name:</label><br>
-         <input type="text" id="fname" name="fname" placeholder="Tony" required><br><br>
+         <input type="text" id="fname" name="fname" placeholder="Tony" pattern="[a-zA-Z-' ]+" required><br><br>
          <label for="lname">Last name:</label><br>
-         <input type="text" id="lname" name="lname" placeholder="Stank"required><br><br>
+         <input type="text" id="lname" name="lname" placeholder="Stank" pattern="[a-zA-ZÀ-ÿ '-]{1,50}" required><br><br>
+         <label for="username">Username ( Up to 24 characters) :</label><br>
+        <input type="text" id="username" name="username" placeholder="PLBY Genius 41 " pattern="^(?=(?:\D*\d){0,12}$)(?=(?:[^ ]* ){0,3}[^ ]*$)[a-zA-Z0-9 ]+$" required> <br><br>
+        <label for="password">Password (at least 8 characters, one uppercase, one lowercase, one number):</label>
+        <input type="password" id="password" name="password" placeholder="Password1234" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br><br>
+        
          <label for="Date of Birth">Date Of Birth: </label><br>
-         <input type="text" placeholder="May 4,1977" required><br><br>
+         <input type="date" id="dob" name="dob" placeholder="May 4,1977" required><br><br>
          <label for="Email">Email:</label><br>
          <input type="text" placeholder="you@gmail.com"required> <br><br>
          <label for="current date">Current Date:</label><br> 
-         <input type="text" placeholder="May 4, 1773"required><br>
-         <button type="button"
-         onclick="document.getElementById('demo').innerHTML = Date()">
-         Click me to display the Date and Time.</button>
-         
+         <input type="text" id="currentDate" name="currentDate"  placeholder="May 4, 1773" required ><br>
+         <button type="button" onclick="showFullMonthName()">Click me to display the Date and Time.</button>
          <p id="demo"></p>
 
 
-
-
   <input type="submit" value="Submit">
-</form> 
+  
+</form>  
+
+<script>
+    // Function to display the full name of the month and live time
+    function showFullMonthName() {
+        var currentDate = new Date();
+        var monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        var month = monthNames[currentDate.getMonth()];
+
+        // Format the date and time using Intl.DateTimeFormat
+        var options = {
+            weekday: 'long',
+            year: 'numeric',
+            day: 'numeric',
+            month: 'long',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            timeZoneName: 'long' // Display full time zone name
+        };
+        var formatter = new Intl.DateTimeFormat(undefined, options);
+
+        // Function to update the time every second
+        function updateTime() {
+            currentDate = new Date();
+            var dateTimeString = formatter.format(currentDate);
+            document.getElementById('demo').innerHTML = "Current Date and Time: " + dateTimeString;
+        }
+
+        // Update the time immediately and then every second
+        updateTime();
+        setInterval(updateTime, 1000);
+    }
+</script>
+<script>
+    // Function to handle date formatting
+    function formatDateOfBirth() {
+        var dobInput = document.getElementById("dob");
+        var selectedDate = new Date(dobInput.value);
+        var month = selectedDate.toLocaleString('default', { month: 'long' });
+        var day = selectedDate.getDate();
+        var year = selectedDate.getFullYear();
+
+        dobInput.value = `${month} ${day}, ${year}`;
+    }
+
+    // Call the formatDateOfBirth function when the page loads to set the initial value
+    window.onload = formatDateOfBirth;
+</script>
+
+<script>
+    // Function to format the date in the desired format
+    function formatDate(date) {
+        var options = { month: 'long', day: 'numeric', year: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
+    // Function to validate the current date
+    function validateForm() {
+        var currentDateInput = document.getElementById("currentDate");
+        var enteredDate = new Date(currentDateInput.value);
+        var today = new Date();
+
+        // Check if the entered date is valid
+        if (isNaN(enteredDate.getTime())) {
+            alert("Please enter a valid date in the format MONTH DAY, YEAR.");
+            return false;
+        }
+
+        // Check if the entered date matches the current date
+        if (
+            enteredDate.getMonth() !== today.getMonth() ||
+            enteredDate.getDate() !== today.getDate() ||
+            enteredDate.getFullYear() !== today.getFullYear()
+        ) {
+            alert("Please enter the current date.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+     
+
+
 </td></tr></table> </center>
 
 
