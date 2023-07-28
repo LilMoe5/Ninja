@@ -32,8 +32,9 @@
          <input type="date" id="dob" name="dob" placeholder="May 4,1977" required><br><br>
          <label for="Email">Email:</label><br>
          <input type="text" placeholder="you@gmail.com"required> <br><br>
-         <label for="current date">Current Date:</label><br> 
-         <input type="text" id="currentDate" name="currentDate"  placeholder="May 4, 1773" required required min="yyyy-mm-dd" max="yyyy-mm-dd"><br>
+         <label for="currentDate">Current Date:</label><br>
+                        <input type="date" id="currentDate" name="currentDate" required><br>
+
          <button type="button" onclick="showFullMonthName()">Click me to display the Date and Time.</button>
          <p id="demo"></p>
 
@@ -100,6 +101,7 @@
         return date.toLocaleDateString(undefined, options);
     }
 
+   
     
     // Function to validate the current date
     function validateForm() {
@@ -110,6 +112,12 @@
         // Check if the entered date is valid
         if (isNaN(enteredDate.getTime())) {
             alert("Please enter a valid date in the format YYYY-MM-DD.");
+            return false;
+        }
+
+        // Check if the entered date is greater than the current date
+        if (enteredDate > today) {
+            alert("Please enter the current date or a past date.");
             return false;
         }
 
