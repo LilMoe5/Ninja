@@ -103,36 +103,7 @@
 
    
     
-    // Function to validate the current date
-    function validateForm() {
-        var currentDateInput = document.getElementById("currentDate");
-        var enteredDate = new Date(currentDateInput.value);
-        var today = new Date();
-
-        // Check if the entered date is valid
-        if (isNaN(enteredDate.getTime())) {
-            alert("Please enter a valid date in the format YYYY-MM-DD.");
-            return false;
-        }
-
-        // Check if the entered date is greater than the current date
-        if (enteredDate > today) {
-            alert("Please enter the current date or a past date.");
-            return false;
-        }
-
-        // Check if the entered date matches the current date
-        if (
-            enteredDate.getFullYear() !== today.getFullYear() ||
-            enteredDate.getMonth() !== today.getMonth() ||
-            enteredDate.getDate() !== today.getDate()
-        ) {
-            alert("Please enter the current date.");
-            return false;
-        }
-
-        return true;
-    }
+   
 </script>
 
 
