@@ -1,13 +1,13 @@
 [
 {
   "name": "Amazon",
-  "numberof Employees" 1,541,000,
+  "numberof Employees": 1,541,000,
   "ceo": "Andy Jassy",
   "yearsrunning": "1995-Current"
 },
 {
   "name": "Google",
-  "numberof Employees" 139,995,
+  "numberof Employees": 139,995,
   "ceo": "Sundar Pichai", 
   "yearsrunning": "1994-Current"
   
