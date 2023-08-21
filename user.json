@@ -1,9 +1,9 @@
 {
-    "name": "Aarush",
+  "name": "Aarush",
+    
+  "favoriteNumber": 5,
 
-"favoriteNumber": 5,
+  "isProgrammer": true,
 
-"isProgrammer": true,
-
-"hobbies: ["Soccer", "Video Games"]
+  "hobbies: ["Soccer", "Video Games"]
 }
